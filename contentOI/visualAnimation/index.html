@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="p5.js"></script>
+  <script src="p5.min.js"></script>
+  <script src="p5.sound.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let t = 0; // time variable
+
+    function setup() {
+      createCanvas(900, 600);
+      // noStroke();
+      // fill(90, 200, 40);
+      stroke(255, 204, 0);
+      fill("rgb(100%,0%,10%)");
+    }
+
+    function draw() {
+      background(20, 10, 40, 10);
+
+      // Grid for rectangles
+      for (let x = 0; x <= width; x = x + 30) {
+        for (let y = 0; y <= height; y = y + 30) {
+          // starting point of each circle depends on mouse position
+          const xAngle = map(mouseX, 0, width, -2 * PI, 4 * PI, true);
+          const yAngle = map(mouseY, 0, height, -2 * PI, 4 * PI, true);
+          // and also varies based on the particle's location
+          const angle = xAngle * (x / width) + yAngle * (y / height);
+
+          // each particle moves randomly
+          const myX = x + 95 * cos(2 * PI * t + angle);
+          const myY = y + 40 * sin(2 * PI * t + angle);
+
+          rect(myX, myY, 15); // draw particle
+        }
+      }
+
+      t = t + 0.01; // update time
+    }
+  </script>
+</body>
+
+</html>

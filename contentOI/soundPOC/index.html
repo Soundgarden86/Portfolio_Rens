@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="p5.js"></script>
+    <script src="libaries/p5.sound.min.js"></script>
+    <script src="libaries/p5.sound.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mic POC</title>
+</head>
+
+<body>
+    <script>
+        let mic;
+
+        function setup() {
+            createCanvas(710, 400);
+
+            // Create an Audio input
+            mic = new p5.AudioIn();
+
+            // start the Audio Input.
+            // By default, it does not .connect() (to the computer speakers)
+            mic.start();
+        }
+
+        function draw() {
+            background('#222222');
+
+            // Get the overall volume (between 0 and 1.0)
+            let vol = mic.getLevel();
+            fill('red');
+            noStroke();
+
+            // Draw an ellipse with height based on volume
+            let h = map(vol, 0, 1, height, 0);
+            ellipse(width / 2, h - 25, 50, 50);
+            ellipse(width / 4, h - 25, 50, 50);
+        }
+    </script>
+</body>
+
+</html>

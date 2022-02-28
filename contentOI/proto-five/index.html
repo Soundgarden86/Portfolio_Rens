@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="p5.js"></script>
+    <script src="libaries/p5.sound.min.js"></script>
+    <script src="libaries/p5.sound.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      let mic, fft;
+
+      function setup() {
+        createCanvas(900, 400);
+        noFill();
+
+        mic = new p5.AudioIn();
+        mic.start();
+        fft = new p5.FFT();
+        fft.setInput(mic);
+      }
+
+      function draw() {
+        background(200);
+
+        let spectrum = fft.analyze();
+
+        beginShape();
+        for (i = 0; i < spectrum.length; i++) {
+          vertex(i, map(spectrum[i], 0, 255, height, 0));
+        }
+        endShape();
+      }
+    </script>
+  </body>
+</html>
