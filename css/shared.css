@@ -1,0 +1,19 @@
+.social-media-links {
+    margin: 1rem auto;
+}
+
+.social-media-links ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.social-media-links li {
+    padding: 1rem;
+}
+
+.fa-brands {
+    color: black;
+}
